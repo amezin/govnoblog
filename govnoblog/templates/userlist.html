@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}User list{% endblock %}
 {% block content %}
-    <ul>
+    <ul class="nav nav-pills nav-stacked">
     {% for user in users %}
-        <li><a href="{% url 'postlist' username=user.get_username %}">{{ user.get_full_name|default:user.get_username }}</a></li>
+        <li>
+            <a href="{% url 'postlist' username=user.get_username %}">
+                <span class="glyphicon glyphicon-user"></span>
+                {{ user.get_full_name|default:user.get_username }}
+            </a>
+        </li>
     {% endfor %}
     </ul>
 {% endblock %}

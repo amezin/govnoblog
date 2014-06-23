@@ -4,10 +4,10 @@
 
 {% block content %}
 
-<form method="post" action="{% url 'newpost' %}">
+<form class="jumbotron" method="post" action="{% url 'newpost' %}">
 {% csrf_token %}
 {{ form.as_p }}
-<input type="submit" />
+<input type="submit" class="btn btn-lg btn-primary" />
 </form>
 
 {% endblock %}
