@@ -3,7 +3,19 @@
 {% block content %}
     {% for post in posts %}
     <article class="panel panel-default">
-        <p class="panel-heading">{{ post.datetime }}</p>
+        <p class="panel-heading">
+            {{ post.datetime }}
+            {% if user == by_user %}
+                <a href="{% url 'edit' postid=post.pk %}">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Edit
+                </a>
+                <a href="{% url 'delete' postid=post.pk %}">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Delete
+                </a>
+            {% endif %}
+        </p>
         <p class="panel-body">{{ post.content }}</p>
     </article>
     {% endfor %}

@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<form class="jumbotron" method="post" action="{% url 'newpost' %}">
+<form class="jumbotron" method="post" action="{{ request.get_full_path }}">
 {% csrf_token %}
 {{ form.as_p }}
 <input type="submit" class="btn btn-lg btn-primary" />
