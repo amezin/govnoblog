@@ -82,6 +82,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-LOGIN_REDIRECT_URL = 'userlist'
+LOGIN_REDIRECT_URL = 'myposts'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'

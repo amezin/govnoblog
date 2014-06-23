@@ -23,10 +23,14 @@ def newpost(request, **kwargs):
             post.user = request.user
             post.save()
             form.save_m2m()
-            return HttpResponseRedirect(reverse('postlist', kwargs={'username': request.user.get_username()}))
+            return myposts(request)
         except ValueError:
             pass
     else:
         form = NewPostForm()
     return render(request, 'newpost.html', {'form': form})
+
+@login_required
+def myposts(request):
+    return HttpResponseRedirect(reverse('postlist', kwargs={'username': request.user.get_username()}))
 
