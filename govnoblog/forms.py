@@ -1,5 +1,14 @@
-from django.forms import Form, CharField, Textarea
+from django.forms import ModelForm, Textarea
+from govnoblog.models import Post
 
-class NewPostForm(Form):
-    content = CharField(label='', max_length=255, widget=Textarea())
+class NewPostForm(ModelForm):
+    class Meta:
+        model = Post
+        fields = '__all__'
+        labels = {
+            'content': ''
+        }
+        widgets = {
+            'content': Textarea(attrs={'cols': 80})
+        }
 

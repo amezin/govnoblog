@@ -18,9 +18,14 @@ def postlist(request, username):
 def newpost(request, **kwargs):
     if request.method == 'POST':
         form = NewPostForm(request.POST)
-        if form.is_valid():
-            Post.objects.create(user=request.user, content=form.cleaned_data['content'])
+        try:
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            form.save_m2m()
             return HttpResponseRedirect(reverse('postlist', kwargs={'username': request.user.get_username()}))
+        except ValueError:
+            pass
     else:
         form = NewPostForm()
     return render(request, 'newpost.html', {'form': form})
