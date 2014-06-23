@@ -1,0 +1,20 @@
+{% extends 'superbase.html' %}
+{% block body %}
+    <header>
+        <nav>
+            <a href="{% url 'userlist' %}">Users</a>
+            {% if user.is_authenticated %}
+            | <a href="{% url 'newpost' %}">New post</a>
+            | <a href="{% url 'postlist' username=user.get_username %}">My posts</a>
+            | <a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a>
+            {% else %}
+            | <a href="{% url 'django.contrib.auth.views.login' %}">Sign in</a>
+            {% endif %}
+        </nav>
+        <h1>{% block title %}{% endblock %}</h1>
+    </header>
+    {% block content %}
+    {% endblock %}
+    </body>
+{% endblock %}
+
